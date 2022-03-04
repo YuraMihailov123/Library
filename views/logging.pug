@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+    //input#butt(type="button" value="Add book" onclick='toAddBook()')
+
+    <div>
+      input(class="input" type=placeholder placeholder="Введите логин" id="1")
+    </div>
+
+    <div>
+      <input type='password' class='input' id='2')
+      //input( type=password placeholder="Введите пароль" id="2")
+    </div>
+
+    <div>
+      <button class="button" id="admin" style="vertical-align:middle"><span>Войти как админ</span></button>
+    </div>
+
+    form(method="get" action="/logged/0")
+      <button class="button" id="guest" style="vertical-align:middle"><span>Войти как гость</span></button>
+
+
+
+  script
+    include ../public/javascripts/logging.js

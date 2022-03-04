@@ -1,0 +1,72 @@
+extends layout
+
+block content
+    h1= title
+    //p #{title}
+        //input#butt(type="button" value="Add book" onclick='toAddBook()')
+    form(method="get" action="/index")
+        <button class="button" id="buttBack" style="vertical-align:middle"><span>Назад</span></button>
+
+    p Фильтровать по:
+    <button class="button" id="b1" style="vertical-align:middle"><span>-</span></button>
+    <button class="button" id="b2" style="vertical-align:middle"><span>Дата возврата</span></button>
+    <button class="button" id="b3" style="vertical-align:middle"><span>По наличию</span></button>
+      //button(type="button" id="b1" ) -
+      //button(type="button" id="b2" ) Дата возврата
+      //button(type="button" id="b3" ) По наличию
+
+    table
+        for book in books
+            tr
+                if(filter===0)
+                    td Название:
+                        a(href="/book/" + book["id"])=book["name"]
+                    td Автор: #{book["author"]}
+                    td Дата: #{book["data"]}
+                    td ID: #{book["id"]}
+
+                    if (book["stock"] === "Yes")
+                        td В наличии: Да
+                    else
+                        if (book["return_date"] !== null)
+                        -  data = new Date(book["return_date"])
+                        -  data_day = data.getDate()
+                        -  data_month = data.getMonth() + 1
+                        -  data_year = data.getFullYear()
+                        td #{data_day}-#{data_month}-#{data_year}
+                        if (new Date(book["return_date"]) < new Date() && book["return_date"] != null && book["stock"] !== "Yes")
+                            td Не сдано в срок
+                        else
+                            td -
+                    td
+                        if isLogged
+                            button(name="Delete" type="button" id=book["id"] class="buttonSmall") Удалить
+
+                if(filter === 2)
+                    if(book["stock"] === "Yes")
+                        td Название:
+                            a(href="/book/" + book["id"])=book["name"]
+                        td Автор: #{book["author"]}
+                        td Дата: #{book["data"]}
+                        td ID: #{book["id"]}
+                        td В наличии: Да
+                if(filter === 1)
+                    if(book["stock"] !== "Yes")
+                        td Название:
+                            a(href="/book/" + book["id"])=book["name"]
+                        td Автор: #{book["author"]}
+                        td Дата: #{book["data"]}
+                        td ID: #{book["id"]}
+
+                            if (book["return_date"] !== null)
+                            -  data = new Date(book["return_date"])
+                            -  data_day = data.getDate()
+                            -  data_month = data.getMonth() + 1
+                            -  data_year = data.getFullYear()
+                            td #{data_day}-#{data_month}-#{data_year}
+                        if (new Date(book["return_date"]) < new Date() && book["return_date"] != null && book["stock"] !== "Yes")
+                            td Не сдано в срок
+
+
+    script
+        include ../public/javascripts/listBooks.js

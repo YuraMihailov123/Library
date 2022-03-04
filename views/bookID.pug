@@ -1,0 +1,76 @@
+extends layout
+
+block content
+    h1= title
+    //p #{title}
+        //input#butt(type="button" value="Add book" onclick='toAddBook()')
+    form(method="get" action="/listOfBooks")
+        <button class="button" id="buttBack" style="vertical-align:middle"><span>Назад</span></button>
+
+    if isLogged
+        <button class="button" id="buttSave" style="vertical-align:middle"><span>Сохранить изменения</span></button>
+
+    table(class="table_card")
+        tr
+            td Название книги:
+            td
+                input(type=placeholder value=book["name"] id="1" readonly= !isLogged)
+
+        tr
+            td Автор:
+            td
+                input(type=placeholder value=book["author"] id="2" readonly= !isLogged)
+        tr
+            td Дата публикации:
+            td
+                input(type=placeholder value=book["data"] id="3" readonly= !isLogged)
+        tr
+            td ID книги:
+            td #{book["id"]}
+        tr
+            td В наличии:
+            td #{book["stock"]}
+        tr
+        if(book["stock"]==="No")
+                td Фамилия:
+                td #{book["surname"]}
+                tr
+                td Имя:
+                td #{book["name_t"]}
+                tr
+
+    if(book["stock"]==="Yes")
+        <button class="button" id="buttTake" style="vertical-align:middle"><span>Взять книгу</span></button>
+        <button disabled class="button" id="buttPut" style="vertical-align:middle"><span>Положить книгу</span></button>
+    else
+        <button disabled class="button" id="buttTake" disabled=true style="vertical-align:middle"><span>Взять книгу</span></button>
+        <button class="button" id="buttPut" style="vertical-align:middle"><span>Положить книгу</span></button>
+    //aside(class="modal" id="modalChangeBook")
+
+
+
+    <div style="text-align: center" id="popupWin" class="modalwin">
+
+    <h2> Взять книгу </h2>
+    <form>
+        section
+         form(id="change_book", action="#", method="post")
+            table
+                tr
+                    td Фамилия:
+                    td
+                        input(type="text" id="idSur")
+                tr
+                    td Имя:
+                    td
+                        input(id="idN" type="text" )
+    td
+        <button class="button" value="Cancel" id="Cancel"<span>Отмена</span></button>
+    td
+        <button class="button" value="Take" id="Take"<span>Взять</span></button>
+    </form>
+    </div>
+
+
+    script
+        include ../public/javascripts/bookIDjs.js

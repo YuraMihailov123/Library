@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    h1= title
+    //p #{title}
+    //<input type="button" id="buttAdd" value="Add book" onclick="addToJSONFile()">
+    //form(method="get" action="/")
+     //input#buttAdd(type="button" value="Add book")
+
+    //script(src='./public/javascripts/booksAdditionToWindow.js')
+
+    //p <textarea  placeholder ="ID" id="textInputID"></textarea>
+      p <textarea  placeholder ="Name" id="textInputName"></textarea>
+         p <textarea  placeholder ="Data" id="textInputData"></textarea>
+    p Удалить по:
+        <select name = "filter" id="selDel">
+        <option value = "1">По ID</option>
+        <option value = "2">По имени</option>
+        </select>
+    <textarea  placeholder ="Введите значение" id="textInputInfo"></textarea>
+    p
+    <button class="button" id="buttDel" style="vertical-align:middle"><span>Удалить книгу</span></button>
+    form(method="get" action="/index" id="getBackdel")
+        <button class="button" style="vertical-align:middle"><span>Назад</span></button>
+    script
+        include ../public/javascripts/delBook.js

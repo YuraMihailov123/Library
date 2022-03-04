@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+    //input#butt(type="button" value="Add book" onclick='toAddBook()')
+    if isLogged
+      form(method="get" action="/AddBook")
+        <button class="button" id="butt1" style="vertical-align:middle"><span>Добавить новую книгу</span></button>
+    form(method="get" action="/listOfBooks")
+      <button class="button" id="butt1" style="vertical-align:middle"><span>Список всех книг</span></button>
+    if isLogged
+      form(method="get" action="/DeleteBook")
+        <button class="button" id="butt1" style="vertical-align:middle"><span>Удалить книгу</span></button>

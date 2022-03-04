@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    h1= title
+    //p #{title}
+    //<input type="button" id="buttAdd" value="Add book" onclick="addToJSONFile()">
+    //form(method="get" action="/")
+     //input#buttAdd(type="button" value="Add book")
+    //button(type="button" id="buttAdd" class="button") Добавить новую книгу
+    <button class="button" id="buttAdd" style="vertical-align:middle"><span>Добавить новую книгу</span></button>
+    //script(src='./public/javascripts/booksAdditionToWindow.js')
+
+    p <textarea  placeholder ="Название" id="textInputName"></textarea>
+     p <textarea  placeholder ="Дата" id="textInputData"></textarea>
+      p <textarea  placeholder ="Автор" id="textInputA"></textarea>
+         //p <textarea  placeholder ="Stock" id="textInputS"></textarea>
+          //p <textarea  placeholder ="Return date" id="textInputR"></textarea>
+    form(method="get" action="/index")
+        <button class="button" id="getBackdel" style="vertical-align:middle"><span>Назад</span></button>
+    script
+        include ../public/javascripts/booksAdditionToWindow.js
